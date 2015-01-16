@@ -8,3 +8,6 @@
 * Changed the name of the project and made some little tweaks
 * Wrote the topic description
 * Registered to the course's labtool
+
+**16.01.2014, *4h*:**
+* Made Slick2D to really work through maven
