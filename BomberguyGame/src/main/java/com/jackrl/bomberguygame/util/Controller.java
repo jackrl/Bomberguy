@@ -1,7 +1,9 @@
 package com.jackrl.bomberguygame.util;
 
+import com.jackrl.bomberguygame.domain.Bomb;
 import com.jackrl.bomberguygame.domain.Player;
-import org.lwjgl.input.Controllers;
+import com.jackrl.bomberguygame.game.states.State;
+import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
@@ -9,14 +11,22 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Controller {
 
     private GameContainer container;
-    StateBasedGame game;
+    private StateBasedGame game;
 
     public Controller(GameContainer container, StateBasedGame game) {
         this.container = container;
         this.game = game;
     }
     
-    public void controlInLevel(Player player, int delta) {
+    public void controlInStartScreen() {
+        Input input = container.getInput();
+        // Go to Level1 when space or start are pressed
+        // TO-DO Add the menu before the first level
+        if(input.isButtonPressed(7, 0) || input.isKeyPressed(Input.KEY_SPACE))
+            game.enterState(State.LEVEL_1);
+    }
+    
+    public void controlInLevel(Player player, ArrayList<Bomb> bombs, int delta) {
         Input input = container.getInput();
         // Movement controlls 
         if(input.isControllerRight(0) || input.isKeyDown(Input.KEY_RIGHT))
@@ -30,7 +40,10 @@ public class Controller {
         
         // Throw bomb controll
         if (input.isButtonPressed(0, 0) || input.isKeyPressed(Input.KEY_SPACE)) {
-            player.throwBomb();
+            Bomb bomb = player.throwBomb();
+            if (bomb != null) {
+                bombs.add(bomb);
+            }
         }
         
         // Pause controll
@@ -55,4 +68,4 @@ public class Controller {
             RB -> 5
             SELECT -> 6
             START -> 7
-        */
+*/

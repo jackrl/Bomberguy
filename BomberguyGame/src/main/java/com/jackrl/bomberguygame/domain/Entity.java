@@ -17,10 +17,12 @@ public abstract class Entity {
         sprite = new Image("rsc/sprites/placeHolderSprite.png");
     }
 
+    // Might be used when coding the "AI" for aggressive enemies
     public float getX() {
         return x;
     }
 
+    // Might be used when coding the "AI" for aggressive enemies
     public float getY() {
         return y;
     }
