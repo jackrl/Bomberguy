@@ -24,3 +24,4 @@
 * Created the Bomb class
 * Added the ability to throw bombs to the player. The bombs disappear after 3 seconds
 * Made some junit tests for Player and Bomb.
+* Wasn't able to get Pitest to work. I suppose that it has problems to get the native libraries. Junit had also problems but got it working.
