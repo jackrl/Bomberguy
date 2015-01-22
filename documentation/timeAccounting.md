@@ -19,3 +19,8 @@
 **18.01.2014, *4h*:**
 * Made the basic functionality of the first domain classes: Entity and Player
 * Built the basic control scheme for the player in a level
+
+**23.01.2014, *7h*:**
+* Created the Bomb class
+* Added the ability to throw bombs to the player. The bombs disappear after 3 seconds
+* Made some junit tests for Player and Bomb.

@@ -53,9 +53,6 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>0.30</version>
-                <configuration>
-                    <argLine>-Djava.library.path=target/natives</argLine>
-                </configuration>
             </plugin>
             
             <plugin>
