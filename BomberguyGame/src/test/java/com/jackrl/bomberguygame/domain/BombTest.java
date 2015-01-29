@@ -77,12 +77,98 @@ public class BombTest {
     
     // Test setting the location of the bomb
     @Test
-    public void testSetLocationCopiesThePlayersLocationToTheBomb() throws SlickException {
+    public void testSetLocationSetsTheBombsLocationToTheCenterOfATile() throws SlickException {
         Player player = new Player(100, 150);
         Bomb bomb = new Bomb(player);
         
         bomb.setLocation();
         
-        assertArrayEquals(new float[]{player.getX(), player.getY()}, new float[]{bomb.getX(), bomb.getY()}, 0);
+        assertArrayEquals(new int[]{96, 160}, new int[]{(int) (bomb.getX()), (int) (bomb.getY())});
+    }
+    
+    // Test that return to player
+    @Test
+    public void testReturnToPlayerResetsTheBomb() throws SlickException {
+        Player player = new Player(100, 150);
+        Bomb bomb = new Bomb(player);
+        
+        bomb.returnToPlayer();
+        
+        assertTrue("The bomb should be active after it has been returned to the player", bomb.isActive());
+    }
+    
+    // Test equals
+    @Test
+    public void testEqualsWithANullObject() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Bomb bomb2 = null;
+        
+        assertFalse("Equals should return false when comapring to null!", bomb1.equals(bomb2));        
+    }
+    
+    @Test
+    public void testEqualsWithAnotherClass() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Player player = new Player(0, 0);
+        
+        assertFalse("Equals should return false when comapring to a player!", bomb1.equals(player));        
+    }
+    
+    @Test
+    public void testEqualsWithAnEqualBomb() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Bomb bomb2 = new Bomb(null);
+        bomb2.x = 100;
+        bomb2.y = 150;
+        
+        assertTrue("Equals should return true when comapring two bombs with the same location!", bomb1.equals(bomb2));
+    }
+    
+    @Test
+    public void testEqualsWithABombWithDifferentX() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Bomb bomb2 = new Bomb(null);
+        bomb1.x = 300;
+        bomb1.y = 150;
+        
+        assertFalse("Equals should return false when comapring two bombs with different X!", bomb1.equals(bomb2));
+    }
+    
+    @Test
+    public void testEqualsWithABombWithDifferentY() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Bomb bomb2 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 300;
+        
+        assertFalse("Equals should return false when comapring two bombs with different Y!", bomb1.equals(bomb2));
+    }
+    
+    @Test
+    public void testEqualsWithABombWithDifferentXandY() throws SlickException {
+        Bomb bomb1 = new Bomb(null);
+        bomb1.x = 100;
+        bomb1.y = 150;
+        
+        Bomb bomb2 = new Bomb(null);
+        bomb1.x = 300;
+        bomb1.y = 300;
+        
+        assertFalse("Equals should return false when comapring two bombs with different X and Y!", bomb1.equals(bomb2));
     }
 }

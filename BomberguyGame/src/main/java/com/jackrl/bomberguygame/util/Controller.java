@@ -26,17 +26,17 @@ public class Controller {
             game.enterState(State.LEVEL_1);
     }
     
-    public void controlInLevel(Player player, ArrayList<Bomb> bombs, int delta) {
+    public void controlInLevel(Player player, ArrayList<Bomb> bombs) {
         Input input = container.getInput();
         // Movement controlls 
         if(input.isControllerRight(0) || input.isKeyDown(Input.KEY_RIGHT))
-            player.moveRight(delta);
+            player.moveRight();
         if(input.isControllerLeft(0) || input.isKeyDown(Input.KEY_LEFT)) 
-            player.moveLeft(delta);
+            player.moveLeft();
         if(input.isControllerDown(0) || input.isKeyDown(Input.KEY_DOWN)) 
-            player.moveDown(delta);
+            player.moveDown();
         if(input.isControllerUp(0) || input.isKeyDown(Input.KEY_UP)) 
-            player.moveUp(delta);
+            player.moveUp();
         
         // Throw bomb controll
         if (input.isButtonPressed(0, 0) || input.isKeyPressed(Input.KEY_SPACE)) {

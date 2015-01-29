@@ -61,7 +61,6 @@
                         <param>com.jackrl.bomberguygame.domain.*</param>
                     </targetTests>
                     <jvmArgs>
-                        <value>-XX:-UseSplitVerifier</value>
                         <value>-Djava.library.path=target/natives</value>
                     </jvmArgs>
                 </configuration>

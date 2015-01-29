@@ -3,17 +3,15 @@ package com.jackrl.bomberguygame.domain;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Bomb {
+public class Bomb extends Entity {
     
-    private float x;
-    private float y;
     private Player player;
-    private Image sprite;
     
     private boolean isActive;
     private int timer;
 
     Bomb(Player player) throws SlickException {
+        super(-100, -100);
         this.player = player;
         resetBomb();
         
@@ -25,9 +23,10 @@ public class Bomb {
         timer = 3 * 1000;
     }
 
+    // TODO: Clean this
     public void setLocation() {
-        x = player.getX();
-        y = player.getY();
+        x = ((int)((player.getX() + 16) / 32)) * 32; 
+        y = ((int)((player.getY() + 16) / 32)) * 32;
     }
     
     public void update(int delta) {
@@ -53,11 +52,16 @@ public class Bomb {
         return timer;
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        
+        Bomb other = (Bomb) obj;
+        
+        if (this.x == other.x && this.y == other.y)
+            return true;
+        
+        return false;
     }
 }

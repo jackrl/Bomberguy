@@ -2,34 +2,52 @@ package com.jackrl.bomberguygame.domain;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 
 public abstract class Entity {
     
     protected float x;
     protected float y;
-    protected float speed = 0.f;
+    protected float maxSpeed = 0.f;
+    protected int dx;
+    protected int dy;
+    
     protected Image sprite;
+    
+    private Rectangle boundingShape;
+    private Rectangle collidingShape;
 
     public Entity(float x, float y) throws SlickException {
         this.x = x;
         this.y = y;
+        this.dx = 0;
+        this.dy = 0;
         // A place holder in case that you forget to place the real one
         sprite = new Image("rsc/sprites/placeHolderSprite.png");
+        
+        this.boundingShape = new Rectangle(x, y, sprite.getWidth() - 2, sprite.getHeight() - 2);
+        this.collidingShape = new Rectangle(-100, -100, 0, 0);
     }
 
     // Might be used when coding the "AI" for aggressive enemies
-    public float getX() {
-        return x;
+    public int getX() {
+        return (int) x;
     }
 
     // Might be used when coding the "AI" for aggressive enemies
-    public float getY() {
-        return y;
+    public int getY() {
+        return (int) y;
     }
     
     public void render() {
-        sprite.draw(x, y);
+        sprite.draw((int) x, (int) y);
     }
     
-    
+    public boolean collidesWith(Entity other) {
+        boundingShape.setBounds((int) x, (int) y, sprite.getWidth() - 3, sprite.getHeight() - 3);
+        
+        collidingShape.setBounds((int) other.x, (int) other.y, other.sprite.getWidth() - 3, other.sprite.getHeight() - 3);
+        
+        return boundingShape.intersects(collidingShape);
+    }
 }

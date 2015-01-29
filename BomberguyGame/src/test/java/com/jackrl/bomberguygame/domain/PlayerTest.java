@@ -41,24 +41,66 @@ public class PlayerTest {
         assertArrayEquals(new float[]{randX, randY}, new float[]{player.x, player.y}, 0);
     }
     
-    // Testing movement
+    // Test moves
     @Test
-    public void testMovementInAllDirtections() throws SlickException {
+    public void testMoveRight() throws SlickException {
         Player player = new Player(0, 0);
-        
-        int verticalDelta1 = 50;
-        int verticalDelta2 = 75;
-        int horizontalDelta1 = 60;
-        int horizontalDelta2 = 34;
-        
-        player.moveDown(verticalDelta1);
-        player.moveUp(verticalDelta2);
-        player.moveRight(horizontalDelta1);
-        player.moveLeft(horizontalDelta2);
-        
-        assertArrayEquals(new float[]{(horizontalDelta1 - horizontalDelta2) * player.speed,
-                                      (verticalDelta1 - verticalDelta2) * player.speed},
-                          new float[]{player.x, player.y}, 0);
+        player.moveRight();
+
+        assertArrayEquals(new int[]{1}, new int[]{player.dx});
+    }
+    
+    @Test
+    public void testMoveLeft() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveLeft();
+
+        assertArrayEquals(new int[]{-1}, new int[]{player.dx});
+    }
+    
+    @Test
+    public void testMoveUp() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveUp();
+
+        assertArrayEquals(new int[]{-1}, new int[]{player.dy});
+    }
+    
+    @Test
+    public void testMoveDown() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveDown();
+
+        assertArrayEquals(new int[]{1}, new int[]{player.dy});
+    }
+    
+    @Test
+    public void testMoveXWithAPreviousMoveRight() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveRight();
+        player.moveX(1000);
+
+        assertArrayEquals(new float[]{1000 * player.maxSpeed}, new float[]{player.x}, 0);
+    }
+    
+    @Test
+    public void testMoveYWithAPreviousMoveDown() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveDown();
+        player.moveY(1000);
+
+        assertArrayEquals(new float[]{1000 * player.maxSpeed}, new float[]{player.y}, 0);
+    }
+    
+    // Test resetting dx and dy
+    @Test
+    public void testResetDxAndDy() throws SlickException {
+        Player player = new Player(0, 0);
+        player.moveRight();
+        player.moveRight();
+        player.resetDxAndDy();
+
+        assertArrayEquals(new int[]{0, 0}, new int[]{player.dx, player.dy});
     }
     
     // Testing bomb throwing
@@ -89,4 +131,5 @@ public class PlayerTest {
         assertNull("The player shouldn't be able to throw a third bomb!", player.throwBomb());
     }
     
+        
 }

@@ -10,8 +10,8 @@ import org.newdawn.slick.state.*;
 
 public class Game extends StateBasedGame {
 
-    static int width = 640;
-    static int height = 480;
+    static int width = 416;
+    static int height = 416;
    
     static boolean fullscreen = false;
     static boolean showFPS = true;
