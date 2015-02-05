@@ -7,6 +7,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * <p>A Slick2D state that represents the start screen.</p>
+ */
 public class StartState extends BasicGameState {
     private Controller controller;
     

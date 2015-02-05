@@ -40,3 +40,13 @@
 * Made the collisions between the player and bombs work. Some tweaking was needed to avoid problems when the player is on top of the bomb after throwing it
 * Made some new tests, although a great part of the testing must be done visually because of the nature of the program
 * Run the pitest and cobertura reports
+
+**05.02.2015,*8h*:**
+* Polished the process of throwing bombs. Now the method takes into account if the player is on top of a bomb he has just thrown so it doesn't stack multiple bombs in the same tile.
+* Made some modifications to the player test to take into account the changes above. Added also a new test for it.
+* Separated the collisions logic to its own class. Made some changes into the player-bomb collisions to make it more simple.
+* Added the Block class that represents the destructible blocks of the game
+* Added the Enemy class with simple movement AI. This will probably be changed to an abstract class from which the rest of the enemies will be inhereted.
+* Added tests and fixed some that needed to be modified
+* Wrote javadoc comments
+* Added instructions on how to get the project working on windows

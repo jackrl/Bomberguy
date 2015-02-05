@@ -1,5 +1,8 @@
 package com.jackrl.bomberguygame.game.states;
 
+/**
+ * <p>A class to enumerate the different Slick2D states</p>
+ */
 public class State {
     private State() {}
     

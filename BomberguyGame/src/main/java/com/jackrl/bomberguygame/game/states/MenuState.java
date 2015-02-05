@@ -6,6 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * <p>A Slick2D state that represents the Menu at the beginning of the game.</p>
+ */
 public class MenuState extends BasicGameState {
     
     @Override

@@ -8,6 +8,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.*;
 
+/**
+ * <p>A Slick2D state based game that sets up the basic settings and starts the game</p>
+ */
 public class Game extends StateBasedGame {
 
     static int width = 416;

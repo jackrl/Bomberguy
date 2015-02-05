@@ -4,6 +4,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
+/**
+ * <p>An abstract class for all the entities that are rendered in the game.</p>
+ */
 public abstract class Entity {
     
     protected float x;
@@ -39,6 +42,9 @@ public abstract class Entity {
         return (int) y;
     }
     
+    /**
+     * Method that renders the sprite of an entity.
+     */
     public void render() {
         sprite.draw((int) x, (int) y);
     }

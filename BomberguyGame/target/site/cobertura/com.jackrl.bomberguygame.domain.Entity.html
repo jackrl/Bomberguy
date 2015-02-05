@@ -37,7 +37,7 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">float</span> x;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;10</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">float</span> y;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;11</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">float</span> maxSpeed = 0.f;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;11</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">float</span> maxSpeed = 0.f;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;12</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">int</span> dx;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;13</td>  <td class="nbHits">&nbsp;</td>
@@ -54,26 +54,26 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> Rectangle collidingShape;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;19</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;20</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Entity(<span class="keyword">float</span> x, <span class="keyword">float</span> y) <span class="keyword">throws</span> SlickException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;21</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.x = x;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;22</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.y = y;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;23</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.dx = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;24</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.dy = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;20</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Entity(<span class="keyword">float</span> x, <span class="keyword">float</span> y) <span class="keyword">throws</span> SlickException {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;21</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.x = x;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;22</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.y = y;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;23</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.dx = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;24</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.dy = 0;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;25</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// A place holder in case that you forget to place the real one</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        sprite = <span class="keyword">new</span> Image(<span class="string">"rsc/sprites/placeHolderSprite.png"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        sprite = <span class="keyword">new</span> Image(<span class="string">"rsc/sprites/placeHolderSprite.png"</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.boundingShape = <span class="keyword">new</span> Rectangle(x, y, sprite.getWidth() - 2, sprite.getHeight() - 2);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.collidingShape = <span class="keyword">new</span> Rectangle(-100, -100, 0, 0);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;30</td>  <td class="nbHitsCovered">&nbsp;130</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.boundingShape = <span class="keyword">new</span> Rectangle(x, y, sprite.getWidth() - 2, sprite.getHeight() - 2);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.collidingShape = <span class="keyword">new</span> Rectangle(-100, -100, 0, 0);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;30</td>  <td class="nbHitsCovered">&nbsp;158</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="comment">// Might be used when coding the "AI" for aggressive enemies</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getX() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;34</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) x;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;34</td>  <td class="nbHitsCovered">&nbsp;9</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) x;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
@@ -82,7 +82,7 @@
   <td class="src"><pre class="src">&nbsp;    <span class="comment">// Might be used when coding the "AI" for aggressive enemies</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getY() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;39</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) y;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;39</td>  <td class="nbHitsCovered">&nbsp;9</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) y;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
@@ -108,6 +108,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 29/01/15 20:38.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 05/02/15 21:22.</div>
 </body>
 </html>

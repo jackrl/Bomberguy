@@ -1,18 +1,17 @@
 package com.jackrl.bomberguygame.game.states;
 
-import com.jackrl.bomberguygame.domain.Bomb;
 import com.jackrl.bomberguygame.domain.Level;
 import com.jackrl.bomberguygame.domain.Player;
 import com.jackrl.bomberguygame.util.Controller;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * <p>A Slick2D state that represents the first level. Levels will made with a template.</p>
+ */
 public class Level1State extends BasicGameState {
     private Player player;
     private Controller controller;
@@ -35,6 +34,7 @@ public class Level1State extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         level.updateBombs(delta);
+        level.updateEnemies(delta);
         
         // Player controll
         controller.controlInLevel(player, level.getBombs());

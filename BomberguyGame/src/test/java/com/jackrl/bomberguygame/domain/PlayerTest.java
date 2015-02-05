@@ -1,5 +1,6 @@
 package com.jackrl.bomberguygame.domain;
 
+import java.util.ArrayList;
 import java.util.Random;
 import org.junit.After;
 import org.junit.Before;
@@ -107,29 +108,72 @@ public class PlayerTest {
     @Test
     public void testThrowBombAllowsThePlayerToThroughBomb() throws SlickException {
         Player player = new Player(0, 0);
-
-        assertNotNull("The player should be able to throw a bomb after it has been created!", player.throwBomb());
+        ArrayList<Bomb> levelBombs = new ArrayList<Bomb>();
+        
+        player.throwBomb(levelBombs);
+        assertArrayEquals(new int[]{1}, new int[]{levelBombs.size()});
     }
     
     @Test
     public void testThrowBombDoesntAllowThePlayerToThroughASecondBomb() throws SlickException {
         Player player = new Player(0, 0);
+        ArrayList<Bomb> levelBombs = new ArrayList<Bomb>();
         
-        player.throwBomb();
-        assertNull("The player shouldn't be able to throw another bomb before the previous one has exploded!", player.throwBomb());
+        player.throwBomb(levelBombs);
+        player.throwBomb(levelBombs);
+        assertArrayEquals(new int[]{1}, new int[]{levelBombs.size()});
     }
     
-    // Testing the addition of more bombs
+    // Testing the addition of more bombs and throwing them
     @Test
-    public void testAddBombByBeingAbleToThroughTwoBombsConsecutively() throws SlickException {
+    public void testAddBombByBeingAbleToThroughTwoBombsConsecutivelyAfterMovingAwayFromTheFirstBomb() throws SlickException {
         Player player = new Player(0, 0);
         player.addBomb(new Bomb(player));
+        ArrayList<Bomb> levelBombs = new ArrayList<Bomb>();
         
-        player.throwBomb();
-        assertNotNull("The player should be able to throw a second bomb after the first one as it was added to the player!", player.throwBomb());
+        player.throwBomb(levelBombs);
         
-        assertNull("The player shouldn't be able to throw a third bomb!", player.throwBomb());
+        player.notSandingOnBomb();
+        
+        player.throwBomb(levelBombs);
+        assertArrayEquals(new int[]{2}, new int[]{levelBombs.size()});
     }
     
-        
+    @Test
+    public void testThrowBombByNotBeingAbleToThroughTwoBombsConsecutivelyIfThePlayerIsStandingOnTheFirstBomb() throws SlickException {
+        Player player = new Player(0, 0);
+        player.addBomb(new Bomb(player));
+        ArrayList<Bomb> levelBombs = new ArrayList<Bomb>();
+
+        player.throwBomb(levelBombs);
+        player.throwBomb(levelBombs);
+        assertArrayEquals(new int[]{1}, new int[]{levelBombs.size()});
+    }
+    
+    // Test getThrownBomb and isStandingOnBomb
+    @Test
+    public void testGetThrownBombReturnsNullBeforeABobmbHasBeenThrown() throws SlickException {
+        Player player = new Player(0, 0);
+        assertNull("getThrownBomb() should return null at the beginning", player.getThrownBomb());
+    }
+    
+    @Test
+    public void testGetThrownBombReturnsABombAfterABobmbHasBeenThrown() throws SlickException {
+        Player player = new Player(0, 0);
+        player.throwBomb(new ArrayList<Bomb>());
+        assertNotNull("getThrownBomb() should not return null after throwing a bomb", player.getThrownBomb());
+    }
+    
+    @Test
+    public void testIsStandingOnBombShouldReturnFalseBeforeThrowingABomb() throws SlickException {
+        Player player = new Player(0, 0);
+        assertFalse("isStandingOnBomb() should return false at the beginning", player.isStandingOnBomb());
+    }
+    
+    @Test
+    public void testIsStandingOnBombShouldReturnTrueAfterABobmbHasBeenThrown() throws SlickException {
+        Player player = new Player(0, 0);
+        player.throwBomb(new ArrayList<Bomb>());
+        assertTrue("isStandingOnBomb() should return true after throwing a bomb", player.isStandingOnBomb());
+    }
 }

@@ -3,6 +3,10 @@ package com.jackrl.bomberguygame.domain;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Class that represents the bombs used by the player to destroy blocks and kill
+ * enemies
+ */
 public class Bomb extends Entity {
     
     private Player player;
@@ -10,12 +14,12 @@ public class Bomb extends Entity {
     private boolean isActive;
     private int timer;
 
-    Bomb(Player player) throws SlickException {
+    public Bomb(Player player) throws SlickException {
         super(-100, -100);
         this.player = player;
         resetBomb();
         
-        sprite = new Image("rsc/sprites/BombSprite.png");
+        sprite = new Image("rsc/sprites/bombSprite.png");
     }
     
     private void resetBomb() {
@@ -23,26 +27,38 @@ public class Bomb extends Entity {
         timer = 3 * 1000;
     }
 
-    // TODO: Clean this
+    /**
+     * Method that sets the location of the bomb based on the position of the
+     * player that owns it
+     */
     public void setLocation() {
         x = ((int)((player.getX() + 16) / 32)) * 32; 
         y = ((int)((player.getY() + 16) / 32)) * 32;
     }
     
+    /**
+     * Method that updates the timer of the bomb until it goes bellow zero. When
+     * the timer goes bellow zero the bomb is deactivated.
+     * @param   delta   Time to advance
+     */
     public void update(int delta) {
         timer -= delta;
         if (timer <= 0)
             isActive = false;
     }
     
-    public void render() {
-        sprite.draw(x, y);
-    }
-    
+    /**
+     * Method that returns if the bomb is active.
+     * 
+     * @return whether the bomb is active or not 
+     */
     public boolean isActive() {
         return isActive;
     }
 
+    /**
+     * Method that rests a bomb and then returns it to the player that owns it.
+     */
     public void returnToPlayer() {
         resetBomb();
         player.addBomb(this);
@@ -52,7 +68,6 @@ public class Bomb extends Entity {
         return timer;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != this.getClass())
             return false;

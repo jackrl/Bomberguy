@@ -8,6 +8,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * <p>The utility class that takes care of taking the input of the player.</p>
+ */
 public class Controller {
 
     private GameContainer container;
@@ -18,6 +21,9 @@ public class Controller {
         this.game = game;
     }
     
+    /**
+     * Method that controls the input while in the start screen
+     */
     public void controlInStartScreen() {
         Input input = container.getInput();
         // Go to Level1 when space or start are pressed
@@ -26,8 +32,15 @@ public class Controller {
             game.enterState(State.LEVEL_1);
     }
     
+    /**
+     * Method that controls the input while in the level
+     * 
+     * @param player    player to be controlled
+     * @param bombs     array of bombs used by the level to store the thrown bombs
+     */
     public void controlInLevel(Player player, ArrayList<Bomb> bombs) {
         Input input = container.getInput();
+        
         // Movement controlls 
         if(input.isControllerRight(0) || input.isKeyDown(Input.KEY_RIGHT))
             player.moveRight();
@@ -36,14 +49,11 @@ public class Controller {
         if(input.isControllerDown(0) || input.isKeyDown(Input.KEY_DOWN)) 
             player.moveDown();
         if(input.isControllerUp(0) || input.isKeyDown(Input.KEY_UP)) 
-            player.moveUp();
+            player.moveUp();        
         
         // Throw bomb controll
         if (input.isButtonPressed(0, 0) || input.isKeyPressed(Input.KEY_SPACE)) {
-            Bomb bomb = player.throwBomb();
-            if (bomb != null) {
-                bombs.add(bomb);
-            }
+            player.throwBomb(bombs);
         }
         
         // Pause controll
