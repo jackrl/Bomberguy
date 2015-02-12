@@ -44,23 +44,37 @@ public class BombTest {
         int delta1 = 500;
         int delta2 = 133;
         
-        bomb.update(delta1);
-        bomb.update(delta2);
+        bomb.update(delta1, new Level());
+        bomb.update(delta2, new Level());
         
         assertEquals(timerStart - (delta1 + delta2), bomb.getTimer());
-        assertTrue("The bomb should still be active", bomb.isActive());
+        assertTrue("The bomb should still be active and not exploded", bomb.isActive() && !bomb.hasExploded());
     }
     
     @Test
-    public void testUpdateDeactivatesBombWhenTimerGetsToZero() throws SlickException {
+    public void testUpdateMakesTheBombExplodedWhenTimerGetsToZero() throws SlickException {
         Player player = new Player(100, 150);
         Bomb bomb = new Bomb(player);
         
         int timerStart = bomb.getTimer();
         
-        bomb.update(timerStart);
+        bomb.update(timerStart, new Level());
         
-        assertFalse("The bomb should be deactivated when the timer reaches 0!", bomb.isActive());
+        assertTrue("The bomb should be have exploded when the timer reaches 0!", bomb.hasExploded());
+    }
+    
+    @Test
+    public void testUpdateDoesntDeactivateWhenExplosionTimeHasntEnded() throws SlickException {
+        Player player = new Player(100, 150);
+        Bomb bomb = new Bomb(player);
+        
+        int timerStart = bomb.getTimer();
+        int explosionTime = bomb.getExplosionTime();
+        
+        bomb.update(timerStart, new Level());
+        bomb.update(explosionTime - 1, new Level());
+        
+        assertFalse("The bomb shouldn't be deactivated when the time of the explosion hasn't run out!", !bomb.isActive());
     }
     
     @Test
@@ -69,8 +83,10 @@ public class BombTest {
         Bomb bomb = new Bomb(player);
         
         int timerStart = bomb.getTimer();
+        int explosionTime = bomb.getExplosionTime();
         
-        bomb.update(timerStart + 500);
+        bomb.update(timerStart, new Level());
+        bomb.update(explosionTime, new Level());
         
         assertFalse("The bomb should be deactivated when the timer is less than 0!", bomb.isActive());
     }
@@ -100,7 +116,7 @@ public class BombTest {
     // Test equals
     @Test
     public void testEqualsWithANullObject() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Bomb bomb1 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 150;
         
@@ -111,22 +127,22 @@ public class BombTest {
     
     @Test
     public void testEqualsWithAnotherClass() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Player player = new Player(0, 0);
+        
+        Bomb bomb1 = new Bomb(player);
         bomb1.x = 100;
         bomb1.y = 150;
         
-        Player player = new Player(0, 0);
-        
-        assertFalse("Equals should return false when comapring to a player!", bomb1.equals(player));        
+        assertFalse("Equals should return false when comapring to the player!", bomb1.equals(player));        
     }
     
     @Test
     public void testEqualsWithAnEqualBomb() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Bomb bomb1 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 150;
         
-        Bomb bomb2 = new Bomb(null);
+        Bomb bomb2 = new Bomb(new Player(0, 0));
         bomb2.x = 100;
         bomb2.y = 150;
         
@@ -135,11 +151,11 @@ public class BombTest {
     
     @Test
     public void testEqualsWithABombWithDifferentX() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Bomb bomb1 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 150;
         
-        Bomb bomb2 = new Bomb(null);
+        Bomb bomb2 = new Bomb(new Player(0, 0));
         bomb1.x = 300;
         bomb1.y = 150;
         
@@ -148,11 +164,11 @@ public class BombTest {
     
     @Test
     public void testEqualsWithABombWithDifferentY() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Bomb bomb1 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 150;
         
-        Bomb bomb2 = new Bomb(null);
+        Bomb bomb2 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 300;
         
@@ -161,11 +177,11 @@ public class BombTest {
     
     @Test
     public void testEqualsWithABombWithDifferentXandY() throws SlickException {
-        Bomb bomb1 = new Bomb(null);
+        Bomb bomb1 = new Bomb(new Player(0, 0));
         bomb1.x = 100;
         bomb1.y = 150;
         
-        Bomb bomb2 = new Bomb(null);
+        Bomb bomb2 = new Bomb(new Player(0, 0));
         bomb1.x = 300;
         bomb1.y = 300;
         

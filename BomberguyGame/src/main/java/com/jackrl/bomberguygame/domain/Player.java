@@ -14,14 +14,18 @@ public class Player extends Entity {
     private Bomb thrownBomb = null;
     private boolean standingOnBomb = false;
     
+    protected int range;
+    
     public Player(float x, float y) throws SlickException {
         super(x, y);
         sprite = new Image("rsc/sprites/playerSprite.png");
         maxSpeed = 0.15f;
+        range = 2;
         
         bombs.add(new Bomb(this));
         // Test: Testing multiple bombs (Remove from final version)
-        //bombs.add(new Bomb(this));        
+        //bombs.add(new Bomb(this));
+        //bombs.add(new Bomb(this));
     }
     
     /**
@@ -88,6 +92,7 @@ public class Player extends Entity {
         if (!standingOnBomb && !bombs.isEmpty()) {
             thrownBomb = bombs.pop(); 
             thrownBomb.setLocation();
+            thrownBomb.setRange(range);
             standingOnBomb = true;
             levelBombs.add(thrownBomb); 
         }

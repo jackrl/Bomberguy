@@ -50,3 +50,11 @@
 * Added tests and fixed some that needed to be modified
 * Wrote javadoc comments
 * Added instructions on how to get the project working on windows
+
+**12.02.2015,*7h*:**
+* Bombs explode now and destroyed blocks. All the different blocking mechanisms have been taking into account, e.g. explosions don't go through walls and the explosion of a bomb triggers the explosion of any bomb the bomb's explosion reaches to.
+* Added the Explosion class.
+* Added sprites for the explosion and the enemy.
+* Updated the tests that were affected by changes made to make the explosions possible.
+* Added a few new tests.
+* Updated the documentation.

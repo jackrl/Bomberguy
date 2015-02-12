@@ -18,7 +18,7 @@ public class Enemy extends Entity{
     
     public Enemy(float x, float y, int dx, int dy) throws SlickException {
         super(x, y);
-        sprite = new Image("rsc/sprites/placeHolderSprite.png");
+        sprite = new Image("rsc/sprites/enemySprite.png");
         maxSpeed = 0.15f;
         
         // Start direction

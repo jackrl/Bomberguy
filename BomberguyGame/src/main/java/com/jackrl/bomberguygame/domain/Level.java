@@ -48,11 +48,11 @@ public class Level {
      * 
      * @param delta     time since last update
      */
-    public void updateBombs(int delta) {
+    public void updateBombs(int delta) throws SlickException {
         // Update the bombs with the time passed and give it back to the player if it isn't active anymore
         for (Iterator<Bomb> iterator = bombs.iterator(); iterator.hasNext();) {
             Bomb bomb = iterator.next();
-            bomb.update(delta);
+            bomb.update(delta, this);
                 if (!bomb.isActive()) {
                     bomb.returnToPlayer();
                     iterator.remove();

@@ -34,7 +34,7 @@ public class LevelTest {
     @Test
     public void testRenderDoesntThrowAnException() throws SlickException {
         Level level = new Level();
-        level.bombs.add(new Bomb(null));
+        level.bombs.add(new Bomb(new Player(0, 0)));
         
         try {
             level.render();
@@ -70,11 +70,25 @@ public class LevelTest {
         level.bombs.add(bomb);
         player.throwBomb(level.bombs);
         
-        int start = bomb.getTimer();
+        int timer = bomb.getTimer();
+        int explosionTime = bomb.getExplosionTime();
         
-        int delta = 10000;
-        level.updateBombs(delta);
+        level.updateBombs(timer);
+        level.updateBombs(explosionTime);
         
         assertArrayEquals(new int[] {0}, new int[] {level.getBombs().size()});
+    }
+    
+    // Testing Render doesn't crash
+    @Test
+    public void testRenderDoesntThroughAnException() throws SlickException {
+        Level level = new Level();
+        
+        Player player = new Player(32, 32);
+        Bomb bomb = new Bomb(player);
+        level.bombs.add(bomb);
+        player.throwBomb(level.bombs);
+        
+        level.render();
     }
 }
