@@ -19,9 +19,13 @@ public class Level1State extends BasicGameState {
     
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        reset(container, game);
+    }
+    
+    private void reset(GameContainer container, StateBasedGame game) throws SlickException {
         level = new Level();
         player = new Player(32, 32);
-        controller = new Controller(container, game);  
+        controller = new Controller(container, game);
     }
 
     @Override
@@ -44,9 +48,16 @@ public class Level1State extends BasicGameState {
         level.checkCollisionsX(player, delta);
         player.moveY(delta);
         level.checkCollisionsY(player, delta);
-        
+
         // Reset dx and dy for next update
         player.resetDxAndDy();
+        
+        // Check deadly collisions
+        level.checkCollisionsWithEnemies(player);      
+        
+        // Reset level if palyer dies
+        if(player.isDead())
+            reset(container, game);
     }
     
     @Override

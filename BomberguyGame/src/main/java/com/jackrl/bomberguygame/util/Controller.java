@@ -58,12 +58,16 @@ public class Controller {
         
         // Pause controll
         if (input.isButtonPressed(7, 0) || input.isKeyPressed(Input.KEY_P)) {
-            // TO-DO: Pause the game
+            if(container.isPaused())
+                container.setPaused(false);
+            else
+                container.pause();
         }
         
         // Closing the game with the contoller
         if(input.isButtonPressed(7, 0) && input.isButtonPressed(6, 0) &&
-                input.isButtonPressed(5, 0) && input.isButtonPressed(4, 0))
+                input.isButtonPressed(5, 0) && input.isButtonPressed(4, 0)
+                || input.isKeyPressed(Input.KEY_ESCAPE))
             container.exit();
     }
 }

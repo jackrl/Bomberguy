@@ -58,3 +58,8 @@
 * Updated the tests that were affected by changes made to make the explosions possible.
 * Added a few new tests.
 * Updated the documentation.
+
+**20.02.2015, *2h*:**
+* Added death to player when it collides with enemies.
+* Implemented the pause and exit features into the Controller
+* Fixed last week's sequence diagrams

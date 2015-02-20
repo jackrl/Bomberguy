@@ -176,4 +176,18 @@ public class PlayerTest {
         player.throwBomb(new ArrayList<Bomb>());
         assertTrue("isStandingOnBomb() should return true after throwing a bomb", player.isStandingOnBomb());
     }
+    
+    // Test Death
+    @Test
+    public void testPlayerIsAliveWhenreated() throws SlickException {
+        Player player = new Player(0, 0);
+        assertFalse("Player should be alive upon creation!", player.isDead());
+    }
+    
+    @Test
+    public void testDieKillsThePlayer() throws SlickException {
+        Player player = new Player(0, 0);
+        player.die();
+        assertTrue("Player should be dead after it is killed!", player.isDead());
+    }
 }

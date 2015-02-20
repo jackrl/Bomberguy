@@ -118,6 +118,10 @@ public class Level {
     public void checkCollisionsY(Player player, int delta) {
         collisions.checkCollisionsY(player, delta);
     }
+    
+    public void checkCollisionsWithEnemies(Player player) {
+        collisions.checkCollisionsWithEnemies(player, enemies);
+    }
 
     public ArrayList<Bomb> getBombs() {
         return bombs;

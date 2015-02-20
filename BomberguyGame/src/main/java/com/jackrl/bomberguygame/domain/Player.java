@@ -15,6 +15,7 @@ public class Player extends Entity {
     private boolean standingOnBomb = false;
     
     protected int range;
+    protected boolean isDead = false;
     
     public Player(float x, float y) throws SlickException {
         super(x, y);
@@ -131,5 +132,13 @@ public class Player extends Entity {
     public void notSandingOnBomb() {
         standingOnBomb = false;
         thrownBomb = null;
+    }
+    
+    public void die() {
+        isDead = true;
+    }
+
+    public boolean isDead() {
+        return isDead;
     }
 }

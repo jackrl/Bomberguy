@@ -36,6 +36,13 @@ public class Collisions {
     }
     
     /******************Walls******************/
+    public void checkCollisionsWithEnemies(Player player, ArrayList<Enemy> enemies) {
+        for (Enemy enemy : enemies)
+            if (player.collidesWith(enemy))
+                player.die();
+    }
+    
+    /******************Walls******************/
     
     private void checkCollisionsWithWallsX(Player player, int delta) {
         for (Wall wall : walls) {
