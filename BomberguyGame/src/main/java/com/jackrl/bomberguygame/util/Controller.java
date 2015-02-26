@@ -24,7 +24,7 @@ public class Controller {
     /**
      * Method that controls the input while in the start screen
      */
-    public void controlInStartScreen() {
+    public void controlInStartAndEndScreen() {
         Input input = container.getInput();
         // Go to Level1 when space or start are pressed
         // TO-DO Add the menu before the first level
@@ -52,7 +52,7 @@ public class Controller {
             player.moveUp();        
         
         // Throw bomb controll
-        if (input.isButtonPressed(0, 0) || input.isKeyPressed(Input.KEY_SPACE)) {
+        if (input.isButtonPressed(1, 0) || input.isKeyPressed(Input.KEY_SPACE)) {
             player.throwBomb(bombs);
         }
         

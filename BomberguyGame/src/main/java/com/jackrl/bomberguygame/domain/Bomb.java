@@ -2,6 +2,7 @@ package com.jackrl.bomberguygame.domain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -10,6 +11,8 @@ import org.newdawn.slick.SlickException;
  * enemies
  */
 public class Bomb extends Entity {
+    
+    private Random rand = new Random();
     
     private Player player;
     
@@ -82,7 +85,7 @@ public class Bomb extends Entity {
         }
         
         checkExplosionsWithWalls(posXCoords, negXCoords, posYCoords, negYCoords, level.walls);
-        checkExplosionsWithBlocks(posXCoords, negXCoords, posYCoords, negYCoords, level.blocks);
+        checkExplosionsWithBlocks(posXCoords, negXCoords, posYCoords, negYCoords, level.blocks, level.powerUps);
         checkExplosionsWithBombs(posXCoords, negXCoords, posYCoords, negYCoords, level);
         
         for (Integer[] coord : posXCoords)
@@ -126,14 +129,15 @@ public class Bomb extends Entity {
     // TODO Randomize power-up drop
     private void checkExplosionsWithBlocks(ArrayList<Integer[]> posXCoords, ArrayList<Integer[]> negXCoords,
                                            ArrayList<Integer[]> posYCoords, ArrayList<Integer[]> negYCoords,
-                                           ArrayList<Block> blocks) {
-        checkExplosionsWithBlocksHelper(posXCoords, blocks);
-        checkExplosionsWithBlocksHelper(negXCoords, blocks);
-        checkExplosionsWithBlocksHelper(posYCoords, blocks);
-        checkExplosionsWithBlocksHelper(negYCoords, blocks);
+                                           ArrayList<Block> blocks,
+                                           ArrayList<PowerUp> powerUps) throws SlickException {
+        checkExplosionsWithBlocksHelper(posXCoords, blocks, powerUps);
+        checkExplosionsWithBlocksHelper(negXCoords, blocks, powerUps);
+        checkExplosionsWithBlocksHelper(posYCoords, blocks, powerUps);
+        checkExplosionsWithBlocksHelper(negYCoords, blocks, powerUps);
     }
     
-    private void checkExplosionsWithBlocksHelper(ArrayList<Integer[]> coords, ArrayList<Block> blocks) {
+    private void checkExplosionsWithBlocksHelper(ArrayList<Integer[]> coords, ArrayList<Block> blocks, ArrayList<PowerUp> powerUps) throws SlickException {
         boolean removeRest = false;
         for (Iterator<Integer[]> iter = coords.iterator(); iter.hasNext();) {
             Integer[] coord = iter.next();
@@ -149,6 +153,15 @@ public class Bomb extends Entity {
                 if(block.x == coord[0] && block.y == coord[1]) {
                     blockIter.remove();
                     removeRest = true;
+                    
+                    switch(rand.nextInt(10)) {
+                        case 0:
+                            powerUps.add(new BombPowerUp(block.x, block.y));
+                            break;
+                        case 9:
+                            powerUps.add(new ExplosionPowerUp(block.x, block.y));
+                            break;
+                    }
                     break;
                 }
             }

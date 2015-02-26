@@ -21,12 +21,9 @@ public class Player extends Entity {
         super(x, y);
         sprite = new Image("rsc/sprites/playerSprite.png");
         maxSpeed = 0.15f;
-        range = 2;
+        range = 1;
         
         bombs.add(new Bomb(this));
-        // Test: Testing multiple bombs (Remove from final version)
-        //bombs.add(new Bomb(this));
-        //bombs.add(new Bomb(this));
     }
     
     /**

@@ -1,7 +1,7 @@
 package com.jackrl.bomberguygame.game;
 
 import com.jackrl.bomberguygame.game.states.Level1State;
-import com.jackrl.bomberguygame.game.states.MenuState;
+import com.jackrl.bomberguygame.game.states.EndState;
 import com.jackrl.bomberguygame.game.states.StartState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -28,8 +28,8 @@ public class Game extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
         this.addState(new StartState());
-        //this.addState(new MenuState());
         this.addState(new Level1State());
+        this.addState(new EndState());
     }
     
     public static void main(String[] args) throws SlickException {

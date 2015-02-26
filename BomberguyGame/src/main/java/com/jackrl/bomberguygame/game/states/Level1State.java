@@ -54,10 +54,20 @@ public class Level1State extends BasicGameState {
         
         // Check deadly collisions
         level.checkCollisionsWithEnemies(player);      
+        level.checkCollisionsWithExplosions(player);
+        
+        // Check collsions with powerUps
+        level.checkCollisionsWithPowerUps(player);
         
         // Reset level if palyer dies
         if(player.isDead())
             reset(container, game);
+        
+        // Go to next level or to final screen if there are no enemies left
+        if(level.hasEnded()) {
+            reset(container, game);
+            game.enterState(State.END);
+        }
     }
     
     @Override

@@ -15,12 +15,14 @@ public class Level {
     protected ArrayList<Wall> walls = new ArrayList<Wall>();
     protected ArrayList<Block> blocks = new ArrayList<Block>();
     protected ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    protected ArrayList<PowerUp> powerUps = new ArrayList<PowerUp>();
     
     // Keep a list of the bombs that have been thrown
     protected ArrayList<Bomb> bombs = new ArrayList<Bomb>();
     
     // Create a collision helper
     private Collisions collisions;
+    private boolean hasEnded = false;
 
     public Level() throws SlickException {
         floorSprite = new Image("rsc/sprites/floorSprite.png");
@@ -31,14 +33,19 @@ public class Level {
                     walls.add(new Wall(x * 32, y * 32));
         
         // Some manually placed blocks
-        // TODO: Randomize this
+        // TODO: Build two levels
         for (int x = 3; x <= 5; x++) 
             for (int y = 3; y <= 7; y++)
                 if (x % 2 != 0 || y % 2 != 0)
                     blocks.add(new Block(x * 32, y * 32));
         
+        // Spawn two enemies        
         enemies.add(new Enemy(11 * 32, 11 * 32, 0, 1));
         enemies.add(new Enemy(10 * 32, 11 * 32, -1, 0));
+        
+        // Testing poweups
+        //powerUps.add(new BombPowerUp(8 * 32, 1 * 32));
+        //powerUps.add(new ExplosionPowerUp(6 * 32, 1 * 32));
         
         collisions = new Collisions(walls, bombs, blocks);
     }
@@ -66,8 +73,16 @@ public class Level {
      * @param delta     time since last update
      */
     public void updateEnemies(int delta) {
-        for (Enemy enemy : enemies) 
+        for (Iterator<Enemy> iter = enemies.iterator(); iter.hasNext();) {
+            Enemy enemy = iter.next();
+            
             enemy.move(delta, walls, blocks, bombs);
+            if (enemy.isDead())
+                iter.remove();
+        }
+        
+        if (enemies.isEmpty())
+            hasEnded = true;
     }
     
     /**
@@ -92,6 +107,10 @@ public class Level {
         // Render bombs
         for (Bomb bomb : bombs)
             bomb.render();
+        
+        // Render powerUps
+        for (PowerUp powerUp : powerUps)
+            powerUp.render();
         
         //Render enemies
         for (Enemy enemy : enemies) {
@@ -122,8 +141,20 @@ public class Level {
     public void checkCollisionsWithEnemies(Player player) {
         collisions.checkCollisionsWithEnemies(player, enemies);
     }
+    
+    public void checkCollisionsWithExplosions(Player player) {
+        collisions.checkCollisionsWithExplosions(player, bombs);
+    }
+    
+    public void checkCollisionsWithPowerUps(Player player) throws SlickException {
+        collisions.checkCollisionsWithPowerUps(player, powerUps);
+    }
 
     public ArrayList<Bomb> getBombs() {
         return bombs;
+    }
+
+    public boolean hasEnded() {
+        return hasEnded;
     }
 }

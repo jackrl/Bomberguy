@@ -2,6 +2,8 @@
 package com.jackrl.bomberguygame.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import org.newdawn.slick.SlickException;
 /**
  * Provisional Class that serves as a helper with the collisions between the player
  * and the rest of the environment
@@ -35,11 +37,35 @@ public class Collisions {
         checkCollisionsWithBombsY(player, delta);
     }
     
-    /******************Walls******************/
+    /******************Enemies******************/
     public void checkCollisionsWithEnemies(Player player, ArrayList<Enemy> enemies) {
         for (Enemy enemy : enemies)
             if (player.collidesWith(enemy))
                 player.die();
+    }
+    
+    /******************Explosions******************/
+    public void checkCollisionsWithExplosions(Player player, ArrayList<Bomb> bombs) {
+        for (Bomb bomb : bombs) {
+            if (bomb.hasExploded()) {
+                for (Explosion explosion : bomb.explosions) {
+                    if (player.collidesWith(explosion))
+                        player.die();
+                }
+            }
+        }
+    }
+    
+    /******************powerUps******************/
+    public void checkCollisionsWithPowerUps(Player player, ArrayList<PowerUp> powerUps) throws SlickException {
+        for (Iterator<PowerUp> iter = powerUps.iterator(); iter.hasNext();) {
+            PowerUp powerUp = iter.next();
+            
+            if (player.collidesWith(powerUp)) {
+                powerUp.givePowerUp(player);
+                iter.remove();
+            }
+        }
     }
     
     /******************Walls******************/

@@ -2,6 +2,7 @@
 package com.jackrl.bomberguygame.domain;
 
 import java.util.ArrayList;
+import java.util.Random;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -13,7 +14,10 @@ import org.newdawn.slick.SlickException;
  * player if possible</p>
  */
 public class Enemy extends Entity{
-
+    
+    private boolean isDead = false;
+    private Random rand = new Random();
+    
     // Needed for forst attempt in simple AI
     
     public Enemy(float x, float y, int dx, int dy) throws SlickException {
@@ -39,16 +43,41 @@ public class Enemy extends Entity{
         if (    checkCollisionsWithWallsX(delta, walls) ||
                 checkCollisionsWithBlocksX(delta, blocks) ||
                 checkCollisionsWithBombsX(delta, bombs)) {
-            dy = -dx;
-            dx = 0;
+            switch(rand.nextInt(3)) {
+                case 0:
+                    dx = -dx;
+                    break;
+                case 1:
+                    dx = 0;
+                    dy = 1;
+                    break;
+                case 2:
+                    dx = 0;
+                    dy = -1;
+                    break;
+            }
         }        
         this.moveY(delta);
-        if (    checkCollisionsWithWallsX(delta, walls) ||
-                checkCollisionsWithBlocksX(delta, blocks) ||
-                checkCollisionsWithBombsX(delta, bombs)) {
-            dx = dy;
-            dy = 0;
-        }    
+        if (    checkCollisionsWithWallsY(delta, walls) ||
+                checkCollisionsWithBlocksY(delta, blocks) ||
+                checkCollisionsWithBombsY(delta, bombs)) {
+            
+            switch(rand.nextInt(3)) {
+                case 0:
+                    dy = -dy;
+                    break;
+                case 1:
+                    dy = 0;
+                    dx = 1;
+                    break;
+                case 2:
+                    dy = 0;
+                    dx = -1;
+                    break;
+            }
+        }
+        
+        checkCollisionsWithExplosions(bombs);
     }
     
     private void moveX(int delta) {
@@ -59,7 +88,21 @@ public class Enemy extends Entity{
         y += dy * maxSpeed * delta;
     }
     
-    // Unite somehow the collisions with the ones of the player
+    private void die() {
+        isDead = true;
+    }
+    
+    public void checkCollisionsWithExplosions(ArrayList<Bomb> bombs) {
+        for (Bomb bomb : bombs) {
+            if (bomb.hasExploded()) {
+                for (Explosion explosion : bomb.explosions) {
+                    if (this.collidesWith(explosion))
+                        this.die();
+                }
+            }
+        }
+    }
+    
     /******************Walls******************/
     
     private boolean checkCollisionsWithWallsX(int delta, ArrayList<Wall> walls) {
@@ -124,5 +167,9 @@ public class Enemy extends Entity{
             }
         }
         return false;
+    }
+    
+    public boolean isDead() {
+        return isDead;
     }
 }
