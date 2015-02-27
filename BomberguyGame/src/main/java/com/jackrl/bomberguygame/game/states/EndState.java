@@ -8,7 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * <p>A Slick2D state that represents the Menu at the beginning of the game.</p>
+ * <p>A Slick2D state that represents the end screen of the game.</p>
  */
 public class EndState extends BasicGameState {
     private Controller controller;
@@ -20,13 +20,14 @@ public class EndState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawString("You have beaten the game!", 100, 200);
-        g.drawString("Press Space or Start to start again!", 75, 220);
+        g.drawString("Congratulations you have beaten the game!", 22, 160);
+        g.drawString("Press Space go to the start screen.", 55, 200);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        controller.controlInStartAndEndScreen();
+        if (controller.controlInStartAndEndScreen())
+            game.enterState(State.START);
     }
     
     @Override

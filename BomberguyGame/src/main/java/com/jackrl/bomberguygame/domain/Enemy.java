@@ -7,27 +7,29 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * <p>The class that represents the enemies in the game. Touching them will kill
+ * <p>The class that represents the enemies in the game. Colliding with them will kill
  * the player</p>
- * <p>Probably will make it an abstract class from which inherit the different enemies</p>
- * <p>The collisions has to be thought over. Will be united with the ones of the
- * player if possible</p>
  */
-public class Enemy extends Entity{
+public class Enemy extends Entity {
     
     private boolean isDead = false;
     private Random rand = new Random();
-    
-    // Needed for forst attempt in simple AI
-    
-    public Enemy(float x, float y, int dx, int dy) throws SlickException {
+
+    /**
+     * Constructor of the Enemy class.
+     * 
+     * @param x
+     * @param y
+     * @throws SlickException 
+     */
+    public Enemy(float x, float y) throws SlickException {
         super(x, y);
         sprite = new Image("rsc/sprites/enemySprite.png");
-        maxSpeed = 0.15f;
+        maxSpeed = 0.12f;
         
         // Start direction
-        this.dx = dx;
-        this.dy = dy;
+        this.dx = 0;
+        this.dy = 1;
     }
     
     /**
@@ -40,10 +42,10 @@ public class Enemy extends Entity{
      */
     public void move(int delta, ArrayList<Wall> walls, ArrayList<Block> blocks, ArrayList<Bomb> bombs) {
         this.moveX(delta);
-        if (    checkCollisionsWithWallsX(delta, walls) ||
-                checkCollisionsWithBlocksX(delta, blocks) ||
-                checkCollisionsWithBombsX(delta, bombs)) {
-            switch(rand.nextInt(3)) {
+        if (checkCollisionsWithWallsX(delta, walls) ||
+            checkCollisionsWithBlocksX(delta, blocks) ||
+            checkCollisionsWithBombsX(delta, bombs)) {
+            switch (rand.nextInt(3)) {
                 case 0:
                     dx = -dx;
                     break;
@@ -58,11 +60,11 @@ public class Enemy extends Entity{
             }
         }        
         this.moveY(delta);
-        if (    checkCollisionsWithWallsY(delta, walls) ||
-                checkCollisionsWithBlocksY(delta, blocks) ||
-                checkCollisionsWithBombsY(delta, bombs)) {
+        if (checkCollisionsWithWallsY(delta, walls) ||
+            checkCollisionsWithBlocksY(delta, blocks) ||
+            checkCollisionsWithBombsY(delta, bombs)) {
             
-            switch(rand.nextInt(3)) {
+            switch (rand.nextInt(3)) {
                 case 0:
                     dy = -dy;
                     break;
@@ -91,7 +93,13 @@ public class Enemy extends Entity{
     private void die() {
         isDead = true;
     }
-    
+
+    /**
+     * Check if the enemy has collided with an explosion. If the enemy has collided
+     * with an explosion, the enemy dies and disappears.
+     * 
+     * @param bombs 
+     */
     public void checkCollisionsWithExplosions(ArrayList<Bomb> bombs) {
         for (Bomb bomb : bombs) {
             if (bomb.hasExploded()) {
@@ -102,9 +110,7 @@ public class Enemy extends Entity{
             }
         }
     }
-    
-    /******************Walls******************/
-    
+
     private boolean checkCollisionsWithWallsX(int delta, ArrayList<Wall> walls) {
         for (Wall wall : walls) {
             if (this.collidesWith(wall)) {
@@ -125,8 +131,6 @@ public class Enemy extends Entity{
         return false;
     }
     
-    /******************Blocks******************/
-    
     private boolean checkCollisionsWithBlocksX(int delta, ArrayList<Block> blocks) {
         for (Block block : blocks) {
             if (this.collidesWith(block)) {
@@ -146,8 +150,6 @@ public class Enemy extends Entity{
         }
         return false;
     }
-    
-    /******************Bombs******************/
     
     private boolean checkCollisionsWithBombsX(int delta, ArrayList<Bomb> bombs) {
         for (Bomb bomb : bombs) {

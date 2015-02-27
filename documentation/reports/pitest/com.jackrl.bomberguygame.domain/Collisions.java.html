@@ -1,0 +1,2521 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+<h1>Collisions.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_1'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_2'></a>
+</td>
+<td class=''><pre><span  class=''>package com.jackrl.bomberguygame.domain;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_3'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_4'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_5'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.Iterator;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_6'></a>
+</td>
+<td class=''><pre><span  class=''>import org.newdawn.slick.SlickException;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_8'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_9'></a>
+</td>
+<td class=''><pre><span  class=''> * Class that serves as a helper with the collisions between the player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_10'></a>
+</td>
+<td class=''><pre><span  class=''> * and the rest of the environment</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_11'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_12'></a>
+</td>
+<td class=''><pre><span  class=''>public class Collisions {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_13'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_14'></a>
+</td>
+<td class=''><pre><span  class=''>    private ArrayList&#60;Wall&#62; walls;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_15'></a>
+</td>
+<td class=''><pre><span  class=''>    private ArrayList&#60;Bomb&#62; bombs;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_16'></a>
+</td>
+<td class=''><pre><span  class=''>    private ArrayList&#60;Block&#62; blocks;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_17'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_18'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_19'></a>
+</td>
+<td class=''><pre><span  class=''>     * Constructor of the Collisions class.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_20'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_21'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param walls</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_22'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param bombs</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_23'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param blocks </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_24'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_25'></a>
+</td>
+<td class='covered'><pre><span  class=''>    public Collisions(ArrayList&#60;Wall&#62; walls, ArrayList&#60;Bomb&#62; bombs, ArrayList&#60;Block&#62; blocks) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_26'></a>
+</td>
+<td class='covered'><pre><span  class=''>        this.walls = walls;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_27'></a>
+</td>
+<td class='covered'><pre><span  class=''>        this.bombs = bombs;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_28'></a>
+</td>
+<td class='covered'><pre><span  class=''>        this.blocks = blocks;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_29'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_30'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_31'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_32'></a>
+</td>
+<td class=''><pre><span  class=''>     * Check the collisions of the player with the walls, blocks and bombs in the x-axis.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_33'></a>
+</td>
+<td class=''><pre><span  class=''>     * the method prevents the player from going through these entities.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_34'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_35'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_36'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param delta </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_37'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_38'></a>
+</td>
+<td class=''><pre><span  class=''>    public void checkCollisionsX(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_39'/>
+39
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_39'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithWallsX(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_40'/>
+40
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_40'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithBlocksX(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_41'/>
+41
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_41'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithBombsX(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_42'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_43'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_44'/>
+44
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_44'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_45'></a>
+</td>
+<td class=''><pre><span  class=''>     * Check the collisions of the player with the walls, blocks and bombs in the y-axis.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_46'></a>
+</td>
+<td class=''><pre><span  class=''>     * the method prevents the player from going through these entities.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_47'/>
+47
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_47'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_48'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_49'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param delta </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_50'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_51'></a>
+</td>
+<td class=''><pre><span  class=''>    public void checkCollisionsY(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_52'/>
+52
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_52'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithWallsY(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_53'/>
+53
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_53'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithBlocksY(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_54'/>
+54
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_54'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        checkCollisionsWithBombsY(player, delta);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_55'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_56'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_57'/>
+57
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_57'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_58'/>
+58
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_58'></a>
+</td>
+<td class=''><pre><span  class=''>     * Check if the player has collided with enemies. If it has collided with an enemy,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_59'></a>
+</td>
+<td class=''><pre><span  class=''>     * the player will die.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_60'/>
+60
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_60'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_61'/>
+61
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_61'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_62'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param enemies </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_63'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_64'></a>
+</td>
+<td class=''><pre><span  class=''>    public void checkCollisionsWithEnemies(Player player, ArrayList&#60;Enemy&#62; enemies) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_65'/>
+65
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_65'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Enemy enemy : enemies)</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_66'/>
+66
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_66'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(enemy))</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_67'/>
+67
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_67'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                player.die();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_68'/>
+68
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_68'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_69'/>
+69
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_69'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_70'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_71'/>
+71
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_71'></a>
+</td>
+<td class=''><pre><span  class=''>     * Check if the player has collided with the explosion of a bomb. If it has collided with an explosion,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_72'/>
+72
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_72'></a>
+</td>
+<td class=''><pre><span  class=''>     * the player will die.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_73'/>
+73
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_73'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_74'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_75'/>
+75
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_75'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param bombs </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_76'/>
+76
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_76'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_77'/>
+77
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_77'></a>
+</td>
+<td class=''><pre><span  class=''>    public void checkCollisionsWithExplosions(Player player, ArrayList&#60;Bomb&#62; bombs) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_78'/>
+78
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_78'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Bomb bomb : bombs) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_79'/>
+79
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_79'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (bomb.hasExploded()) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_80'/>
+80
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_80'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                for (Explosion explosion : bomb.explosions) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_81'/>
+81
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_81'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                    if (player.collidesWith(explosion))</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_82'/>
+82
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_82'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                        player.die();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_83'></a>
+</td>
+<td class='covered'><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_84'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_85'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_86'/>
+86
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_86'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_87'/>
+87
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_87'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_88'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_89'/>
+89
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_89'></a>
+</td>
+<td class=''><pre><span  class=''>     * Check if the player has collided with any power-ups. If it has collided with one,</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_90'></a>
+</td>
+<td class=''><pre><span  class=''>     * the effect of the power-up will be applied to the player.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_91'/>
+91
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_91'></a>
+</td>
+<td class=''><pre><span  class=''>     * </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_92'/>
+92
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_92'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param player</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_93'/>
+93
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_93'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param powerUps</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_94'></a>
+</td>
+<td class=''><pre><span  class=''>     * @throws SlickException </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_95'/>
+95
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_95'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_96'/>
+96
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_96'></a>
+</td>
+<td class=''><pre><span  class=''>    public void checkCollisionsWithPowerUps(Player player, ArrayList&#60;PowerUp&#62; powerUps) throws SlickException {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_97'/>
+97
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_97'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Iterator&#60;PowerUp&#62; iter = powerUps.iterator(); iter.hasNext();) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_98'/>
+98
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_98'></a>
+</td>
+<td class='covered'><pre><span  class=''>            PowerUp powerUp = iter.next();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_99'/>
+99
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_99'></a>
+</td>
+<td class=''><pre><span  class=''>            </span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_100'/>
+100
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_100'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(powerUp)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_101'/>
+101
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_101'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                powerUp.givePowerUp(player);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_102'/>
+102
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_102'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                iter.remove();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_103'/>
+103
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_103'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_104'/>
+104
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_104'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_105'/>
+105
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_105'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_106'/>
+106
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_106'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_107'/>
+107
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_107'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithWallsX(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_108'/>
+108
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_108'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Wall wall : walls) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_109'/>
+109
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_109'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(wall)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_110'/>
+110
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_110'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                player.x -= player.dx * player.maxSpeed * delta; </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_111'/>
+111
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_111'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_112'/>
+112
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_112'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_113'/>
+113
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_113'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_114'/>
+114
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_114'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_115'/>
+115
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_115'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithWallsY(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_116'/>
+116
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_116'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Wall wall : walls) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_117'/>
+117
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_117'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(wall)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_118'/>
+118
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_118'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                player.y -= player.dy * player.maxSpeed * delta;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_119'/>
+119
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_119'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_120'/>
+120
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_120'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_121'/>
+121
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_121'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_122'/>
+122
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_122'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_123'/>
+123
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_123'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithBlocksX(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_124'/>
+124
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_124'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Block block : blocks) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_125'/>
+125
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_125'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(block)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_126'/>
+126
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_126'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                player.x -= player.dx * player.maxSpeed * delta; </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_127'/>
+127
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_127'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_128'/>
+128
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_128'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_129'/>
+129
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_129'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_130'/>
+130
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_130'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_131'/>
+131
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_131'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithBlocksY(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_132'/>
+132
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_132'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Block block : blocks) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_133'/>
+133
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_133'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(block)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_134'/>
+134
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_134'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                player.y -= player.dy * player.maxSpeed * delta;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_135'/>
+135
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_135'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_136'/>
+136
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_136'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_137'/>
+137
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_137'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_138'/>
+138
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_138'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_139'/>
+139
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_139'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithBombsX(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_140'/>
+140
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_140'></a>
+</td>
+<td class='covered'><pre><span  class=''>        boolean noBombCollisions = true;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_141'/>
+141
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_141'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Bomb bomb : bombs) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_142'/>
+142
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_142'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(bomb)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_143'/>
+143
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_143'></a>
+</td>
+<td class='covered'><pre><span  class=''>                noBombCollisions = false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_144'/>
+144
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_144'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                if (!player.isStandingOnBomb() || !bomb.equals(player.getThrownBomb()))</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_145'/>
+145
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_145'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                    player.x -= player.dx * player.maxSpeed * delta;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_146'/>
+146
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_146'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_147'/>
+147
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_147'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_148'/>
+148
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_148'></a>
+</td>
+<td class=''><pre><span  class=''>        </span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_149'/>
+149
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_149'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (noBombCollisions) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_150'/>
+150
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_150'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            player.notSandingOnBomb();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_151'/>
+151
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_151'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_152'/>
+152
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_152'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_153'/>
+153
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_153'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_154'/>
+154
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_154'></a>
+</td>
+<td class=''><pre><span  class=''>    private void checkCollisionsWithBombsY(Player player, int delta) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_155'/>
+155
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_155'></a>
+</td>
+<td class='covered'><pre><span  class=''>        boolean noBombCollisions = true;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_156'/>
+156
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_156'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Bomb bomb : bombs) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_157'/>
+157
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_157'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (player.collidesWith(bomb)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_158'/>
+158
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_158'></a>
+</td>
+<td class='covered'><pre><span  class=''>                noBombCollisions = false;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_159'/>
+159
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_159'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                if (!player.isStandingOnBomb() || !bomb.equals(player.getThrownBomb()))</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_160'/>
+160
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_160'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                    player.y -= player.dy * player.maxSpeed * delta;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_161'/>
+161
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_161'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_162'/>
+162
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_162'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_163'/>
+163
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_163'></a>
+</td>
+<td class=''><pre><span  class=''>        </span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_164'/>
+164
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_164'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (noBombCollisions) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_165'/>
+165
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_165'>1</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            player.notSandingOnBomb();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_166'/>
+166
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_166'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_167'/>
+167
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_167'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@49f1d31a_168'/>
+168
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_168'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_39'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithWallsX : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_40'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithBlocksX : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_41'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithBombsX : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_52'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithWallsY : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_53'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithBlocksY : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_54'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Collisions::checkCollisionsWithBombsY : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_65'>65</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_65'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithEnemyKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_66'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithEnemyKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_67'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Player::die : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithEnemyKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_78'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_79'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_80'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_81'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_82'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/Player::die : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_97'>97</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_97'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombPowerUpGivesThePlayerAnotherBomb(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_100'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombPowerUpGivesThePlayerAnotherBomb(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_101'>101</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_101'/> 
+
+<p class='KILLED'>removed call to com/jackrl/bomberguygame/domain/PowerUp::givePowerUp : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombPowerUpGivesThePlayerAnotherBomb(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_102'/> 
+
+<p class='SURVIVED'>removed call to java/util/Iterator::remove : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_108'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_109'>109</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_109'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_110'/> 
+
+<p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_116'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_117'>117</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_117'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_118'/> 
+
+<p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_124'>124</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_124'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_125'>125</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_125'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_126'/> 
+
+<p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_132'>132</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_132'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_133'>133</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_133'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_134'>134</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_134'/> 
+
+<p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_141'>141</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_141'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_142'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_144'>144</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_144'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_145'>145</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_145'/> 
+
+<p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_149'>149</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_149'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_150'>150</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_150'/> 
+
+<p class='SURVIVED'>removed call to com/jackrl/bomberguygame/domain/Player::notSandingOnBomb : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_156'>156</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_156'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_157'>157</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_157'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_159'>159</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_159'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_160'>160</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_160'/> 
+
+<p class='KILLED'>Replaced float subtraction with addition : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> <p class='KILLED'>Replaced float multiplication with division : KILLED -> com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest)</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_164'>164</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_164'/> 
+
+<p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@49f1d31a_165'>165</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@49f1d31a_165'/> 
+
+<p class='SURVIVED'>removed call to com/jackrl/bomberguygame/domain/Player::notSandingOnBomb : SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest) (185 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest) (162 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheRight(com.jackrl.bomberguygame.domain.CollisionsTest) (170 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerNonCollisionWithEnemyDoesntKillThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest) (179 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheRight(com.jackrl.bomberguygame.domain.CollisionsTest) (184 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionPowerUpGivesThePlayerIncresedRange(com.jackrl.bomberguygame.domain.CollisionsTest) (194 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest) (165 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest) (187 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest) (148 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheRight(com.jackrl.bomberguygame.domain.CollisionsTest) (199 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithWallFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest) (188 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheLeft(com.jackrl.bomberguygame.domain.CollisionsTest) (171 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithExplosionKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest) (194 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBlockFromTheTop(com.jackrl.bomberguygame.domain.CollisionsTest) (148 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombFromTheBottom(com.jackrl.bomberguygame.domain.CollisionsTest) (173 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithEnemyKillsThePlayer(com.jackrl.bomberguygame.domain.CollisionsTest) (174 ms)</li><li>com.jackrl.bomberguygame.domain.CollisionsTest.testPlayerCollisionWithBombPowerUpGivesThePlayerAnotherBomb(com.jackrl.bomberguygame.domain.CollisionsTest) (160 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.30
+
+</body>
+</html>

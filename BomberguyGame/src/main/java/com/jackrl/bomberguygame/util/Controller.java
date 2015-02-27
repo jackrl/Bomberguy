@@ -2,7 +2,6 @@ package com.jackrl.bomberguygame.util;
 
 import com.jackrl.bomberguygame.domain.Bomb;
 import com.jackrl.bomberguygame.domain.Player;
-import com.jackrl.bomberguygame.game.states.State;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -16,24 +15,28 @@ public class Controller {
     private GameContainer container;
     private StateBasedGame game;
 
+    /**
+     * Constructor of the Controller class.
+     * 
+     * @param container
+     * @param game 
+     */
     public Controller(GameContainer container, StateBasedGame game) {
         this.container = container;
         this.game = game;
     }
     
     /**
-     * Method that controls the input while in the start screen
+     * Method that controls the input while in the start and end screens.
      */
-    public void controlInStartAndEndScreen() {
+    public boolean controlInStartAndEndScreen() {
         Input input = container.getInput();
-        // Go to Level1 when space or start are pressed
-        // TO-DO Add the menu before the first level
-        if(input.isButtonPressed(7, 0) || input.isKeyPressed(Input.KEY_SPACE))
-            game.enterState(State.LEVEL_1);
+
+        return input.isButtonPressed(7, 0) || input.isKeyPressed(Input.KEY_SPACE);
     }
     
     /**
-     * Method that controls the input while in the level
+     * Method that controls the input while in the level.
      * 
      * @param player    player to be controlled
      * @param bombs     array of bombs used by the level to store the thrown bombs
@@ -42,13 +45,13 @@ public class Controller {
         Input input = container.getInput();
         
         // Movement controlls 
-        if(input.isControllerRight(0) || input.isKeyDown(Input.KEY_RIGHT))
+        if (input.isControllerRight(0) || input.isKeyDown(Input.KEY_RIGHT))
             player.moveRight();
-        if(input.isControllerLeft(0) || input.isKeyDown(Input.KEY_LEFT)) 
+        if (input.isControllerLeft(0) || input.isKeyDown(Input.KEY_LEFT)) 
             player.moveLeft();
-        if(input.isControllerDown(0) || input.isKeyDown(Input.KEY_DOWN)) 
+        if (input.isControllerDown(0) || input.isKeyDown(Input.KEY_DOWN)) 
             player.moveDown();
-        if(input.isControllerUp(0) || input.isKeyDown(Input.KEY_UP)) 
+        if (input.isControllerUp(0) || input.isKeyDown(Input.KEY_UP)) 
             player.moveUp();        
         
         // Throw bomb controll
@@ -58,16 +61,16 @@ public class Controller {
         
         // Pause controll
         if (input.isButtonPressed(7, 0) || input.isKeyPressed(Input.KEY_P)) {
-            if(container.isPaused())
+            if (container.isPaused())
                 container.setPaused(false);
             else
                 container.pause();
         }
         
         // Closing the game with the contoller
-        if(input.isButtonPressed(7, 0) && input.isButtonPressed(6, 0) &&
-                input.isButtonPressed(5, 0) && input.isButtonPressed(4, 0)
-                || input.isKeyPressed(Input.KEY_ESCAPE))
+        if (input.isButtonPressed(7, 0) && input.isButtonPressed(6, 0) &&
+            input.isButtonPressed(5, 0) && input.isButtonPressed(4, 0) ||
+            input.isKeyPressed(Input.KEY_ESCAPE))
             container.exit();
     }
 }

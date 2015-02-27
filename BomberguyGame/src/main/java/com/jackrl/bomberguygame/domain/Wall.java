@@ -10,6 +10,13 @@ import org.newdawn.slick.SlickException;
  */
 public class Wall extends Entity {
 
+    /**
+     * Constructor of the Wall class.
+     * 
+     * @param x
+     * @param y
+     * @throws SlickException 
+     */
     public Wall(float x, float y) throws SlickException {
         super(x, y);
         sprite = new Image("rsc/sprites/wallSprite.png");

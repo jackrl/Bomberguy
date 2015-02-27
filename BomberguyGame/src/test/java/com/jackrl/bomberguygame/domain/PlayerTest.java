@@ -28,7 +28,7 @@ public class PlayerTest {
     @Test
     public void testContructorWithCoordinatesx0y0() throws SlickException {
         Player player = new Player(0, 0);
-        assertArrayEquals(new float[]{0,0}, new float[]{player.x, player.y}, 0);
+        assertArrayEquals(new float[]{0, 0}, new float[]{player.x, player.y}, 0);
         
     }
     
@@ -189,5 +189,20 @@ public class PlayerTest {
         Player player = new Player(0, 0);
         player.die();
         assertTrue("Player should be dead after it is killed!", player.isDead());
+    }
+    
+    // Test Entities collision method
+    @Test
+    public void testPlayerNonCollisionWithWall() throws SlickException {
+        Player player = new Player(0, 0);
+        Wall wall = new Wall(100, 100);
+        assertFalse("The player shouldn't have collided with the wall!", player.collidesWith(wall));
+    }
+    
+    @Test
+    public void testPlayerCollisionWithWall() throws SlickException {
+        Player player = new Player(0, 0);
+        Wall wall = new Wall(16, 16);
+        assertTrue("The player should have collided with the wall!", player.collidesWith(wall));
     }
 }

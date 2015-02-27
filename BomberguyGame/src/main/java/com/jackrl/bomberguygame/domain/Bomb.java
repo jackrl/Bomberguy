@@ -25,6 +25,12 @@ public class Bomb extends Entity {
     
     private int range;
 
+    /**
+     * Constructor of the Bomb class.
+     * 
+     * @param  player
+     * @throws SlickException 
+     */
     public Bomb(Player player) throws SlickException {
         super(-100, -100);
         this.player = player;
@@ -47,8 +53,8 @@ public class Bomb extends Entity {
      * player that owns it
      */
     public void setLocation() {
-        x = ((int)((player.getX() + 16) / 32)) * 32; 
-        y = ((int)((player.getY() + 16) / 32)) * 32;
+        x = ((int) ((player.getX() + 16) / 32)) * 32; 
+        y = ((int) ((player.getY() + 16) / 32)) * 32;
     }
     
     /**
@@ -56,6 +62,7 @@ public class Bomb extends Entity {
      * the timer goes bellow zero the bomb is deactivated.
      * @param   delta   Time to advance
      * @param   level   The level object containing all the other entities
+     * @throws  SlickException
      */
     public void update(int delta, Level level) throws SlickException {
         timer -= delta;
@@ -68,6 +75,12 @@ public class Bomb extends Entity {
         
     }
     
+    /**
+     * Method that controls the explosion of the bomb. 
+     * 
+     * @param  level
+     * @throws SlickException 
+     */
     protected void explode(Level level) throws SlickException {
         hasExploded = true;
         
@@ -118,7 +131,7 @@ public class Bomb extends Entity {
             }
             
             for (Wall wall : walls) {
-                if(wall.x == coord[0] && wall.y == coord[1]) {
+                if (wall.x == coord[0] && wall.y == coord[1]) {
                     iter.remove();
                     removeRest = true;
                 }
@@ -126,7 +139,6 @@ public class Bomb extends Entity {
         }
     }
     
-    // TODO Randomize power-up drop
     private void checkExplosionsWithBlocks(ArrayList<Integer[]> posXCoords, ArrayList<Integer[]> negXCoords,
                                            ArrayList<Integer[]> posYCoords, ArrayList<Integer[]> negYCoords,
                                            ArrayList<Block> blocks,
@@ -150,11 +162,11 @@ public class Bomb extends Entity {
             for (Iterator<Block> blockIter = blocks.iterator(); blockIter.hasNext();) {
                 Block block = blockIter.next();
                 
-                if(block.x == coord[0] && block.y == coord[1]) {
+                if (block.x == coord[0] && block.y == coord[1]) {
                     blockIter.remove();
                     removeRest = true;
                     
-                    switch(rand.nextInt(10)) {
+                    switch (rand.nextInt(10)) {
                         case 0:
                             powerUps.add(new BombPowerUp(block.x, block.y));
                             break;
@@ -188,11 +200,10 @@ public class Bomb extends Entity {
             }
             
             for (Bomb bomb : bombs) {
-                if(bomb.x == coord[0] && bomb.y == coord[1]) {
+                if (bomb.x == coord[0] && bomb.y == coord[1]) {
                     iter.remove();
-                    if(!bomb.hasExploded) {
+                    if (!bomb.hasExploded)
                         bomb.explode(level);
-                    }
                     removeRest = true;
                     break;
                 }
@@ -211,11 +222,6 @@ public class Bomb extends Entity {
     }
 
     
-    /**
-     * Method that returns if the bomb is active.
-     * 
-     * @return whether the bomb is active or not 
-     */
     public boolean isActive() {
         return isActive;
     }

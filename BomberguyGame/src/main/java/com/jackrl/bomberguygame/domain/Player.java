@@ -10,13 +10,20 @@ import org.newdawn.slick.SlickException;
  */
 public class Player extends Entity {
 
-    private ArrayDeque<Bomb> bombs = new ArrayDeque<Bomb>();
     private Bomb thrownBomb = null;
     private boolean standingOnBomb = false;
     
+    protected ArrayDeque<Bomb> bombs = new ArrayDeque<Bomb>();
     protected int range;
     protected boolean isDead = false;
     
+    /**
+     * Constructor of the Player class.
+     * 
+     * @param x
+     * @param y
+     * @throws SlickException 
+     */
     public Player(float x, float y) throws SlickException {
         super(x, y);
         sprite = new Image("rsc/sprites/playerSprite.png");

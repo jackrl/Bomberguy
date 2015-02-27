@@ -20,6 +20,13 @@ public abstract class Entity {
     private Rectangle boundingShape;
     private Rectangle collidingShape;
 
+    /**
+     * Constructor of the Entity class.
+     * 
+     * @param x
+     * @param y
+     * @throws SlickException 
+     */
     public Entity(float x, float y) throws SlickException {
         this.x = x;
         this.y = y;
@@ -49,6 +56,12 @@ public abstract class Entity {
         sprite.draw((int) x, (int) y);
     }
     
+    /**
+     * Method that checks the collisions between Entities
+     * 
+     * @param  other
+     * @return Whether this Entity has collided with the other Entity.
+     */
     public boolean collidesWith(Entity other) {
         boundingShape.setBounds((int) x, (int) y, sprite.getWidth() - 3, sprite.getHeight() - 3);
         

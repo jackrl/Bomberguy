@@ -10,10 +10,26 @@ import org.newdawn.slick.SlickException;
 
 public class LevelTest {
     
+    private Level level;
+    
     @Before
-    public void setUp() throws LWJGLException {
+    public void setUp() throws LWJGLException, SlickException {
         // Creating an openGL context for the tests to work
         Display.create();
+        
+        level = new Level(new String[] {"#############",
+                                        "#  @ @ @ @  #",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#  @ @ @ @ !#",
+                                        "#############"});
     }
     
     @After
@@ -25,15 +41,12 @@ public class LevelTest {
     // Contructor tests
     @Test
     public void testContructorWorksWithoutErrorsAndTheWallsArrayListIsntEmpty() throws SlickException {
-        Level level = new Level();
-        
         assertFalse("The walls ArrayList should contain the walls of the level!", level.walls.isEmpty());
     }
     
     // Test that rendering doesn't fail
     @Test
     public void testRenderDoesntThrowAnException() throws SlickException {
-        Level level = new Level();
         level.bombs.add(new Bomb(new Player(0, 0)));
         
         try {
@@ -45,9 +58,7 @@ public class LevelTest {
     
     // Test updateBombs
     @Test
-    public void testUpdateBombUpdatesTheBombsTimer() throws SlickException {
-        Level level = new Level();
-        
+    public void testUpdateBombUpdatesTheBombsTimer() throws SlickException {        
         Player player = new Player(32, 32);
         Bomb bomb = new Bomb(player);
         level.bombs.add(bomb);
@@ -62,9 +73,7 @@ public class LevelTest {
     }
     
     @Test
-    public void testUpdateBombReturnsAnExplodedBombToThePlayer() throws SlickException {
-        Level level = new Level();
-        
+    public void testUpdateBombReturnsAnExplodedBombToThePlayer() throws SlickException {      
         Player player = new Player(32, 32);
         Bomb bomb = new Bomb(player);
         level.bombs.add(bomb);
@@ -81,9 +90,7 @@ public class LevelTest {
     
     // Testing Render doesn't crash
     @Test
-    public void testRenderDoesntThroughAnException() throws SlickException {
-        Level level = new Level();
-        
+    public void testRenderDoesntThroughAnExceptionAfterBombIsThrown() throws SlickException {        
         Player player = new Player(32, 32);
         Bomb bomb = new Bomb(player);
         level.bombs.add(bomb);

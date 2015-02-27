@@ -10,7 +10,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * <p>A Slick2D state that represents the first level. Levels will made with a template.</p>
+ * <p>A Slick2D state that represents the first level.</p>
  */
 public class Level1State extends BasicGameState {
     private Player player;
@@ -23,7 +23,19 @@ public class Level1State extends BasicGameState {
     }
     
     private void reset(GameContainer container, StateBasedGame game) throws SlickException {
-        level = new Level();
+        level = new Level(new String[] {"#############",
+                                        "#  @ @ @ @  #",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#@ @ @ @ @ @#",
+                                        "# # # # # # #",
+                                        "#  @ @ @ @ !#",
+                                        "#############"});
         player = new Player(32, 32);
         controller = new Controller(container, game);
     }
@@ -60,13 +72,13 @@ public class Level1State extends BasicGameState {
         level.checkCollisionsWithPowerUps(player);
         
         // Reset level if palyer dies
-        if(player.isDead())
+        if (player.isDead())
             reset(container, game);
         
         // Go to next level or to final screen if there are no enemies left
-        if(level.hasEnded()) {
+        if (level.hasEnded()) {
             reset(container, game);
-            game.enterState(State.END);
+            game.enterState(State.LEVEL_2);
         }
     }
     

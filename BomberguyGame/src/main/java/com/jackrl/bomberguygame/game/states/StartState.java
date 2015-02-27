@@ -20,12 +20,14 @@ public class StartState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawString("Press Space or Start!", 200, 200);
+        g.drawString("BOMBERGUY", 165, 160);
+        g.drawString("Press Space to start!", 115, 200);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        controller.controlInStartAndEndScreen();
+        if (controller.controlInStartAndEndScreen())
+            game.enterState(State.LEVEL_1);
     }
     
     @Override

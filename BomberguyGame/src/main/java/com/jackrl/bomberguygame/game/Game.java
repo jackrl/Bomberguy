@@ -1,8 +1,6 @@
 package com.jackrl.bomberguygame.game;
 
-import com.jackrl.bomberguygame.game.states.Level1State;
-import com.jackrl.bomberguygame.game.states.EndState;
-import com.jackrl.bomberguygame.game.states.StartState;
+import com.jackrl.bomberguygame.game.states.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -17,7 +15,7 @@ public class Game extends StateBasedGame {
     static int height = 416;
    
     static boolean fullscreen = false;
-    static boolean showFPS = true;
+    static boolean showFPS = false;
     static String title = "BomberGuy";
     static int fpslimit = 60;
     
@@ -29,6 +27,7 @@ public class Game extends StateBasedGame {
     public void initStatesList(GameContainer container) throws SlickException {
         this.addState(new StartState());
         this.addState(new Level1State());
+        this.addState(new Level2State());
         this.addState(new EndState());
     }
     
