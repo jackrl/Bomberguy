@@ -1,4 +1,4 @@
-#Intructions
+# Intructions
 To run the jar file go to the directory it is located with your terminal and run it with the following command:
 java -jar Bomberguy.jar
 
