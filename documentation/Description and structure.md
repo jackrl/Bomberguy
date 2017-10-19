@@ -1,4 +1,4 @@
-#Description and Structure of the Topic
+# Description and Structure of the Topic
 
 **Topic:** The intention of this project is to make a game similar to the classic bomberman games. The player will be able to go through a couple of levels, that have enemies and destructible blocks that can be destroyed with the help of bombs. The player will begin with the capability of throwing just one bomb at a time. The amount of bombs and their range can be increased by collecting power-ups that may drop when the player destructs a destructible block.
 
